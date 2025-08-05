@@ -1,5 +1,5 @@
 {
-  "name": "planet-app",
+  "name": "ContinuesIntegration",
   "version": "1.0.0",
   "description": "A simple Node.js app for CI/CD testing",
   "main": "index.js",
