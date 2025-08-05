@@ -3,8 +3,7 @@ on:
  push:
    branches:
      - main
-   paths: 
-     - ".github/workflows/examples.yml"
+    
 jobs:
 # CI stage
  build-test:
