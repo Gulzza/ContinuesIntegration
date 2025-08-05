@@ -17,10 +17,10 @@ on:
        uses: actions/setup-node@v4
      # 3. Install dependencies
      - name: Install dependencies
-        run: npm install
+       run: npm install
      # 4. Run Test
      - name: Run Test
-        run: npm test
+       run: npm test
   # Build and push Docker image to ECR
   docker-build-push:
     name: Build & Push Docker Image
