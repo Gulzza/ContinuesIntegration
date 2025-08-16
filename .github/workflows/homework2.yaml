@@ -49,19 +49,20 @@ docker-build-push:
      run: |
        docker push ${{ steps.login-ecr.outputs.registry }}/myapp:latest
 #DEPLOY to EC2
-deploy:
-  name: Deploy to EC2
-  needs: docker-build-push
-  runs-on: ubuntu-latest
-  steps:
-  - name: Deploy via ssh
+  deploy:
+    name: Deploy to EC2
+    needs: docker-build-push
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy via ssh
     uses: appleboy/ssh-action@v1.0.0
     with:
      host:${{ secrets.EC2_HOST }}
      username:${{ secrets.EC2_USER }}
      key:${{ secrets.EC2_SSH_KEY }}
-       script: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${REGISTRY}
+    script: |
+          aws ecr get-login-password --region us-east-1 \
+            | docker login --username AWS --password-stdin ${REGISTRY}
           docker pull ${REGISTRY}/${REPO_NAME}:latest
           docker stop myapp || true
           docker rm myapp || true
